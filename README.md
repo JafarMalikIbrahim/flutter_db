@@ -1,6 +1,20 @@
 # flutter_db
 
-A new Flutter project.
+Home
+
+![Screenshot 2023-05-31 110245](https://github.com/JafarMalikIbrahim/flutter_db/assets/92065895/fc7fe1c8-5e68-4d8e-89d6-75b1e72fe7ea)
+
+Tambah
+
+![Screenshot 2023-05-31 110303](https://github.com/JafarMalikIbrahim/flutter_db/assets/92065895/455a0eaf-01ac-416e-9fc4-21471af9a444)
+
+Ubah
+
+![Screenshot 2023-05-31 110253](https://github.com/JafarMalikIbrahim/flutter_db/assets/92065895/61c0617d-f79f-40dd-89f7-471467e5ddd7)
+
+
+
+
 
 ## Getting Started
 
