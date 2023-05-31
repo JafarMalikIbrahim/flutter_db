@@ -103,7 +103,16 @@ class _HomeState extends State<Home> {
                     deleteItem(itemList[index].id);
                   },
                 ),
-                onTap: () async {},
+                onTap: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EntryForm(item: itemList[index]),
+                    ),
+                  ).then((value) {
+                    updateListView();
+                  });
+                },
               ),
             ));
   }

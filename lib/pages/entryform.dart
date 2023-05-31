@@ -6,14 +6,15 @@ import 'package:flutter_db/helpers/dbhelper.dart';
 class EntryForm extends StatefulWidget {
   const EntryForm({
     Key? key,
-    Item? item,
+    this.item,
   }) : super(key: key);
+  final Item? item;
   @override
   State<EntryForm> createState() => EntryFormState();
 }
 
 class EntryFormState extends State<EntryForm> {
-  Item item = Item(name: '', price: 0, stok: 0, kodeBarang: '');
+  late Item item = Item(name: '', price: 0, stok: 0, kodeBarang: '');
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController stokController = TextEditingController();
@@ -21,15 +22,15 @@ class EntryFormState extends State<EntryForm> {
 
   @override
   Widget build(BuildContext context) {
-    if (item.name == '') {
-      nameController.text = item.name;
-      priceController.text = item.price.toString();
-      stokController.text = item.stok.toString();
-      kodeBarangController.text = item.kodeBarang;
+    if (widget.item != null) {
+      nameController.text = widget.item!.name;
+      priceController.text = widget.item!.price.toString();
+      stokController.text = widget.item!.stok.toString();
+      kodeBarangController.text = widget.item!.kodeBarang;
     }
     return Scaffold(
       appBar: AppBar(
-        title: item.name == '' ? const Text('Tambah') : const Text('Ubah'),
+        title: widget.item == null ? const Text('Tambah') : const Text('Ubah'),
         leading: IconButton(
           icon: const Icon(Icons.keyboard_arrow_left),
           onPressed: () {
@@ -133,7 +134,7 @@ class EntryFormState extends State<EntryForm> {
                     ),
                   ),
                   onPressed: () {
-                    if (item.name == '') {
+                    if (widget.item == null) {
                       print('database');
                       // Tambah data
                       item = Item(
@@ -147,10 +148,12 @@ class EntryFormState extends State<EntryForm> {
                       print(id);
                     } else {
                       // Ubah data
+                      item.id = widget.item!.id;
                       item.name = nameController.text;
                       item.price = int.parse(priceController.text);
                       item.stok = int.parse(stokController.text);
                       item.kodeBarang = kodeBarangController.text;
+                      SQLHelper.updateItem(item);
                     }
                     print('Disini Datanya');
                     // Kembali ke layar sebelumnya dengan membawa objek it
